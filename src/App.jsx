@@ -57,7 +57,7 @@ function AskScreen({ onYes }) {
 
   return (
     <div className="screen ask-screen">
-      <h1 className="question">¿Quieres salir conmigo?</h1>
+      <h1 className="question">¿Me quieres?</h1>
       <div className="buttons-row">
         <button
           className="btn btn-si"

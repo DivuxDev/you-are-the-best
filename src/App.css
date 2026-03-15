@@ -53,38 +53,33 @@
 .btn-si {
   padding: 1.4rem 3.5rem;
   font-size: 2rem;
-  background: linear-gradient(135deg, #ff4d85, #ff1a6c);
   color: #fff;
-  box-shadow: 0 6px 20px rgba(255, 26, 108, 0.45);
-  /* The transform set inline via style prop will be layered on top */
+  box-shadow: 0 6px 20px var(--btn-shadow, rgba(255, 26, 108, 0.45));
 }
 
 .btn-si:hover {
-  background: linear-gradient(135deg, #ff1a6c, #e0005a);
-  box-shadow: 0 8px 28px rgba(255, 26, 108, 0.6);
+  filter: brightness(0.9);
+  box-shadow: 0 8px 28px var(--btn-shadow, rgba(255, 26, 108, 0.6));
 }
 
 .btn-si:active {
-  box-shadow: 0 3px 10px rgba(255, 26, 108, 0.4);
+  filter: brightness(0.82);
+  box-shadow: 0 3px 10px var(--btn-shadow, rgba(255, 26, 108, 0.4));
 }
 
 /* ── "No" button ───────────────────────────────────────────── */
 .btn-no {
   padding: 1rem 2.5rem;
   font-size: 1.3rem;
-  background: #fff0f5;
-  color: #c0527a;
-  box-shadow: 0 3px 10px rgba(192, 82, 122, 0.2);
-  border: 2px solid #f9b8d0;
+  border: 2px solid transparent;
 }
 
 .btn-no:hover {
-  background: #ffe0ec;
-  box-shadow: 0 4px 14px rgba(192, 82, 122, 0.3);
+  filter: brightness(0.94);
 }
 
 .btn-no:active {
-  background: #ffd0e5;
+  filter: brightness(0.88);
 }
 
 /* ── Yes screen ────────────────────────────────────────────── */
@@ -139,4 +134,195 @@
 @keyframes popIn {
   0%   { transform: scale(0.4); opacity: 0; }
   100% { transform: scale(1);   opacity: 1; }
+}
+
+/* ── Config link (bottom-right gear) ────────────────────────────── */
+.config-link {
+  position: absolute;
+  bottom: 1.2rem;
+  right: 1.4rem;
+  font-size: 1rem;
+  opacity: 0.25;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  padding: 0.3rem 0.4rem;
+  transition: opacity 0.2s;
+  line-height: 1;
+  border-radius: 50%;
+}
+.config-link:hover {
+  opacity: 0.65;
+}
+
+/* ── Config screen ───────────────────────────────────────────────── */
+.config-screen {
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 3rem 1.5rem;
+}
+
+.config-title {
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  font-weight: 800;
+  color: #8b1a4a;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.config-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 520px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.config-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #6b2040;
+}
+
+.config-input {
+  padding: 0.7rem 1rem;
+  border: 2px solid #f9b8d0;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  background: #fff;
+  color: #3d0020;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.config-input:focus {
+  border-color: #ff4d85;
+}
+
+.config-fieldset {
+  border: 2px solid #f9b8d0;
+  border-radius: 0.75rem;
+  padding: 1rem 1rem 1.2rem;
+  background: #fff8fb;
+}
+
+.config-legend {
+  font-weight: 700;
+  color: #8b1a4a;
+  padding: 0 0.5rem;
+  font-size: 0.95rem;
+}
+
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+  gap: 0.65rem;
+  margin-top: 0.7rem;
+}
+
+.theme-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 0.4rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.85rem;
+  border: 3px solid transparent;
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+.theme-option input[type="radio"] {
+  display: none;
+}
+.theme-option.selected {
+  border-color: rgba(0,0,0,0.5);
+  transform: scale(1.07);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+}
+.theme-option:hover:not(.selected) {
+  border-color: rgba(0,0,0,0.2);
+  transform: scale(1.03);
+}
+
+/* ── Config action buttons ───────────────────────────────────────── */
+.config-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.btn-cfg {
+  padding: 0.65rem 1.4rem;
+  border-radius: 9999px;
+  border: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+}
+.btn-cfg:active {
+  transform: scale(0.97);
+}
+
+.btn-cfg-reset,
+.btn-cfg-back {
+  border: 2px solid transparent;
+}
+.btn-cfg-reset:hover,
+.btn-cfg-back:hover {
+  filter: brightness(0.94);
+}
+
+.btn-cfg-save {
+  color: #fff;
+  box-shadow: 0 4px 14px var(--btn-shadow, rgba(255,26,108,0.35));
+}
+.btn-cfg-save:hover {
+  filter: brightness(0.9);
+  box-shadow: 0 6px 20px var(--btn-shadow, rgba(255,26,108,0.5));
+}
+
+/* ── Heart emoji picker ──────────────────────────────────────────── */
+.heart-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin-top: 0.7rem;
+}
+
+.heart-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  font-size: 1.7rem;
+  border: 3px solid transparent;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(4px);
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  line-height: 1;
+}
+.heart-option input[type="radio"] {
+  display: none;
+}
+.heart-option.selected {
+  border-color: rgba(0, 0, 0, 0.5);
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.heart-option:hover:not(.selected) {
+  border-color: rgba(0, 0, 0, 0.2);
+  transform: scale(1.07);
 }
